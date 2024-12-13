@@ -1,8 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
+import axios from 'axios'
 
 function App() {
   const [jokes, setJokes] = useState([])
+
+  useEffect(() => {
+    axios.get('http://locahost:3000/jokes')
+    .then((response) =>{
+      setJokes(response.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  })
 
   return (
     <>
